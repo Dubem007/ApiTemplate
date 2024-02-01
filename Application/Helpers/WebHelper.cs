@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Linq;
 
 namespace Application.Helpers
 {
     public interface IWebHelper
     {
-        UserHelperDto User();
+        UserHelperDTO User();
     }
 
     public class WebHelper : IWebHelper
@@ -17,37 +15,51 @@ namespace Application.Helpers
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public static HttpContext HttpContextMapp
+        public static HttpContext HttpContext
         {
             get { return _httpContextAccessor.HttpContext; }
         }
 
-        private static UserHelperDto UserHelper
+        public static UserHelperDTO UserHelper
         {
             get
             {
-                var userId = _httpContextAccessor.HttpContext.User.Claims.Where(x => x.Type == ClaimTypeHelper.UserId).FirstOrDefault()?.Value ?? "";
-                Guid.TryParse(userId, out Guid id);
+                var staffId = _httpContextAccessor.HttpContext.User.Claims.Where(x => x.Type == ClaimTypeHelper.StaffId).FirstOrDefault()?.Value ?? "";
+                var organizationId = _httpContextAccessor?.HttpContext?.User?.Claims?.Where(x => x.Type == ClaimTypeHelper.OrganizationId).FirstOrDefault()?.Value ?? null;
+                var fullName = _httpContextAccessor?.HttpContext?.User?.Claims?.Where(x => x.Type == ClaimTypeHelper.FullName).FirstOrDefault()?.Value ?? "";
                 var email = _httpContextAccessor?.HttpContext?.User?.Claims?.Where(x => x.Type == ClaimTypeHelper.Email).FirstOrDefault()?.Value ?? "";
+                var userName = _httpContextAccessor?.HttpContext?.User?.Claims?.Where(x => x.Type == ClaimTypeHelper.UserName).FirstOrDefault()?.Value ?? "";
+                var employeeId = _httpContextAccessor?.HttpContext?.User?.Claims?.Where(x => x.Type == ClaimTypeHelper.EmployeeId).FirstOrDefault()?.Value ?? null;
+                var role = _httpContextAccessor?.HttpContext?.User?.Claims?.Where(x => x.Type == ClaimTypeHelper.RolesStr).FirstOrDefault()?.Value ?? "";
 
-                var result = new UserHelperDto
+                var result = new UserHelperDTO
                 {
-                    UserId = id,
-                    Email = email
+                    OrganizationId = string.IsNullOrEmpty(organizationId) ? Guid.Empty : Guid.Parse(organizationId),
+                    StaffId = staffId,
+                    UserName = userName,
+                    FullName = fullName,
+                    Email = email,
+                    EmployeeId = string.IsNullOrEmpty(employeeId) ? Guid.Empty : Guid.Parse(employeeId),
+                    Role = role,
                 };
                 return result;
             }
         }
 
-        public UserHelperDto User()
+        public UserHelperDTO User()
         {
             return UserHelper;
         }
     }
 
-    public class UserHelperDto
+    public class UserHelperDTO
     {
-        public Guid UserId { get; set; }
+        public Guid OrganizationId { get; set; }
+        public string StaffId { get; set; }
+        public Guid EmployeeId { get; set; }
+        public string Role { get; set; }
+        public string FullName { get; set; }
         public string Email { get; set; }
+        public string UserName { get; set; }
     }
 }

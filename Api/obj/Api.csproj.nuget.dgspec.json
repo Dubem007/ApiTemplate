@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dubem007\\source\\repos\\ApiTemplate\\ApiTemplate\\Api.csproj": {}
+    "C:\\Users\\Dubem007\\source\\repos\\ApiTemplate\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dubem007\\source\\repos\\ApiTemplate\\ApiTemplate\\Api.csproj": {
+    "C:\\Users\\Dubem007\\source\\repos\\ApiTemplate\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dubem007\\source\\repos\\ApiTemplate\\ApiTemplate\\Api.csproj",
-        "projectName": "Api",
-        "projectPath": "C:\\Users\\Dubem007\\source\\repos\\ApiTemplate\\ApiTemplate\\Api.csproj",
+        "projectUniqueName": "C:\\Users\\Dubem007\\source\\repos\\ApiTemplate\\API\\API.csproj",
+        "projectName": "API",
+        "projectPath": "C:\\Users\\Dubem007\\source\\repos\\ApiTemplate\\API\\API.csproj",
         "packagesPath": "C:\\Users\\dotek\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dubem007\\source\\repos\\ApiTemplate\\ApiTemplate\\obj\\",
+        "outputPath": "C:\\Users\\Dubem007\\source\\repos\\ApiTemplate\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -53,9 +53,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "AutoMapper": {
+            "FluentValidation": {
               "target": "Package",
-              "version": "[12.0.1, )"
+              "version": "[11.9.0, )"
             },
             "FluentValidation.AspNetCore": {
               "target": "Package",
@@ -65,29 +65,9 @@
               "target": "Package",
               "version": "[1.8.9, )"
             },
-            "Hangfire.Core": {
-              "target": "Package",
-              "version": "[1.8.9, )"
-            },
-            "Hangfire.PostgreSql": {
-              "target": "Package",
-              "version": "[1.20.5, )"
-            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[6.0.8, )"
-            },
-            "Microsoft.AspNetCore.Mvc.ApiExplorer": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
-              "target": "Package",
-              "version": "[6.0.8, )"
-            },
-            "Microsoft.AspNetCore.Mvc.Versioning": {
-              "target": "Package",
-              "version": "[5.1.0, )"
+              "version": "[6.0.26, )"
             },
             "Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer": {
               "target": "Package",
@@ -101,17 +81,17 @@
               "target": "Package",
               "version": "[6.0.26, )"
             },
-            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
-              "target": "Package",
-              "version": "[1.18.1, )"
-            },
             "StackExchange.Redis": {
               "target": "Package",
-              "version": "[2.6.122, )"
+              "version": "[2.7.17, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.Annotations": {
+              "target": "Package",
+              "version": "[6.5.0, )"
             }
           },
           "imports": [
@@ -183,9 +163,21 @@
               "target": "Package",
               "version": "[1.8.9, )"
             },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.26, )"
             },
             "Microsoft.Extensions.Configuration.Abstractions": {
               "target": "Package",

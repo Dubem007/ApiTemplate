@@ -2,7 +2,7 @@ using System.Threading.Channels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Api.ActionFilters;
+namespace API.ActionFilters;
 
 public class ValidationFilterAttribute : IActionFilter
 {

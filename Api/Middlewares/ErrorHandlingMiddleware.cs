@@ -5,7 +5,7 @@ using System.Net;
 using Application.Logger;
 using Application.Helpers;
 
-namespace Api.Middlewares
+namespace API.Middlewares
 {
     public class ErrorHandlingMiddleware
     {

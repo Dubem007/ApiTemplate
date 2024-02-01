@@ -1,38 +1,35 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text;
 using Application.Logger;
 using StackExchange.Redis;
-using Api.Middlewares;
-using Api.Configurations;
+using API.Middlewares;
+using API.Configurations;
 using Persistense;
 using FluentValidation.AspNetCore;
 using Application.Helpers;
 using Hangfire;
-using Hangfire.PostgreSql;
 using Microsoft.EntityFrameworkCore;
 using Persistense.AppDBContext;
+using Microsoft.OpenApi.Models;
 
-namespace Api.Extensions;
+namespace API.Extensions;
 
 public static class ServiceExtensions
 {
-    public static void ConfigureCors(this IServiceCollection services)
-    {
-        services.AddCors(options => options.AddPolicy("CorsPolicy",
-            builder =>
-            {
-                builder.AllowAnyHeader()
+
+    public static void ConfigureCors(this IServiceCollection serviceCollection) =>
+           serviceCollection.AddCors(options =>
+           {
+               options.AddPolicy("CorsPolicy", builder =>
+                   builder.AllowAnyOrigin()
                        .AllowAnyMethod()
-                       .SetIsOriginAllowed((host) => true)
-                       .AllowCredentials();
-            }));
-    }
+                       .AllowAnyHeader()
+                       .WithExposedHeaders("X-Pagination"));
+           });
 
     public static void ConfigureLoggerService(this IServiceCollection services)
     {
@@ -43,7 +40,7 @@ public static class ServiceExtensions
     public static void ConfigureIisIntegration(this IServiceCollection serviceCollection) =>
         serviceCollection.Configure<IISOptions>(options => { });
 
-    public static void ConfigurePostgresSqlContext(this IServiceCollection serviceCollection, IConfiguration configuration)
+    public static void ConfigureSqlContext(this IServiceCollection serviceCollection, IConfiguration configuration)
     {
         serviceCollection.AddDbContext<AppDbContext>(
           opts =>
